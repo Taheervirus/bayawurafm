@@ -2,267 +2,261 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="manifest" href="/manifest.json"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bayawura FM</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Bayawura FM - Live</title>
+    <link rel="manifest" href="/manifest.json"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary: #e94560;
+            --dark: #121212;
+            --light: #f8f9fa;
+            --gray: #333;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+            color: white;
             min-height: 100vh;
-            padding-top: 100px;
-            color: #000;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .main-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1rem 2rem;
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            display: flex;
             align-items: center;
-            gap: 1.5rem;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
         }
 
-        .header-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid rgba(0, 0, 0, 0.2);
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .header-logo:hover {
-            transform: rotate(10deg) scale(1.1);
-        }
-
-        .station-name {
-            color: #e94560;
-            font-size: 1.8em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .container {
-            background: rgba(0, 0, 0, 0.05);
-            padding: 2rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-            max-width: 500px;
-            width: 90%;
-            margin: 1rem auto;
+        .header {
             text-align: center;
+            margin: 30px 0 40px;
         }
-
-        .metadata {
-            margin: 1.5rem 0;
-        }
-
-        .station-info {
-            font-size: 1.2em;
-            margin-bottom: 0.5rem;
-            color: #e94560;
-        }
-
-        .now-playing {
-            font-size: 1.1em;
-            color: #333;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        button {
-            background: #e94560;
-            border: none;
-            padding: 1.2rem;
+        .logo {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 30px rgba(233, 69, 96, 0.4);
+        }
+        .station {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-top: 15px;
+            background: linear-gradient(90deg, #ff6b6b, #e94560);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .live {
+            display: inline-block;
+            background: #ff0000;
+            color: white;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255,0,0,0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255,0,0,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,0,0,0); }
         }
 
-        button:hover {
-            transform: scale(1.1);
-            background: #ff5c77;
+        .player-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        button i {
-            font-size: 1.5rem;
+        .cover {
+            width: 220px;
+            height: 220px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 3px solid var(--primary);
+        }
+
+        .track-info {
+            margin-bottom: 30px;
+        }
+        .now-playing {
+            color: #aaa;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        .title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 8px 0 20px;
             color: white;
         }
 
-        .volume-container {
-            margin-top: 1.5rem;
+        .play-btn {
+            width: 90px;
+            height: 90px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(233,69,96,0.5);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: #ff5773;
+        }
+        .play-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Ripple effect on click */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.6);
+            transform: scale(0);
+            animation: rippleAnim 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        .volume {
+            margin-top: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.8rem;
+            gap: 15px;
+            color: #ccc;
         }
-
         .volume-slider {
-            width: 150px;
-            height: 5px;
             -webkit-appearance: none;
-            background: rgba(0, 0, 0, 0.1);
+            width: 140px;
+            height: 6px;
             border-radius: 5px;
+            background: #444;
+            outline: none;
         }
-
         .volume-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 15px;
-            height: 15px;
-            background: #e94560;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
+            background: var(--primary);
             cursor: pointer;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .playing {
-            animation: pulse 2s infinite;
-        }
-
-        /* Image container */
-        .image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 2rem 0;
-        }
-
-        .image-container img {
-            max-width: 80%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Footer */
         footer {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.05);
-            color: #555;
-            font-size: 0.9em;
+            margin-top: 50px;
+            color: #888;
+            font-size: 0.9rem;
         }
+        footer a { color: var(--primary); text-decoration: none; }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 1.5rem;
-            }
-            
-            .main-header {
-                padding: 1rem;
-            }
-            
-            .station-name {
-                font-size: 1.5em;
-            }
+        .status {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #4ade80;
         }
     </style>
 </head>
 <body>
-    <header class="main-header">
-        <img src="https://bayawurafm.com.ng/bb.png" alt="Radio Logo" class="header-logo">
-        <h1 class="station-name">Bayawura FM</h1>
-    </header>
 
-    <!-- Centered Image -->
-    <div class="image-container">
-        <img src="https://bayawurafm.com.ng/bb.png" alt="Centered Image">
+    <div class="header">
+        <img src="https://bayawurafm.com.ng/bb.png" alt="Bayawura FM" class="logo">
+        <h1 class="station">Bayawura FM</h1>
+        <div class="live">● LIVE NOW</div>
     </div>
 
-    <div class="container">
-        <div class="metadata">
-            <div class="station-info">LIVE STREAM</div>
-            <div class="now-playing">Listening to: <span id="song-title">Bayawura FM</span></div>
+    <div class="player-card">
+        <img src="https://bayawurafm.com.ng/bayuwa.jpg" alt="Bayawura FM" class="cover">
+
+        <div class="track-info">
+            <div class="now-playing">NOW PLAYING</div>
+            <div class="title" id="title">Bayawura FM - Live Stream</div>
         </div>
 
-        <div class="player-container">
-            <audio id="audio-player" src="https://stream.zeno.fm/t03utu3exf9uv"></audio>
-            <div class="controls">
-                <button id="play-pause-btn">
-                    <i class="fas fa-play"></i>
-                </button>
-            </div>
-        </div>
+        <button class="play-btn" id="playBtn">
+            <i class="fas fa-play"></i>
+        </button>
+        <div class="status" id="status">Tap play to start listening</div>
 
-        <div class="volume-container">
+        <div class="volume">
             <i class="fas fa-volume-up"></i>
-            <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="1">
+            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.8">
         </div>
     </div>
- <!-- Centered Image -->
-    <div class="image-container">
-        <img src="https://bayawurafm.com.ng/bayuwa.jpg">
-    </div>
-    <!-- Footer -->
-<footer style="text-align:center; padding:15px 0;">
-    <a href="https://wa.me/2348064447412" style="text-decoration:none; color:inherit;">
-        Powered By KBE Developers
-    </a>
-</footer>
 
+    <footer>
+        Powered by <a href="https://wa.me/2348064447412" target="_blank">KBE Developers</a>
+    </footer>
+
+    <audio id="stream" preload="none">
+        <source src="https://stream.zeno.fm/t03utu3exf9uv" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
-        const audioPlayer = document.getElementById('audio-player');
-        const playPauseBtn = document.getElementById('play-pause-btn');
+        const audio = document.getElementById('stream');
+        const playBtn = document.getElementById('playBtn');
+        const icon = playBtn.querySelector('i');
+        const status = document.getElementById('status');
         const volumeSlider = document.querySelector('.volume-slider');
-        const songTitle = document.getElementById('song-title');
 
         let isPlaying = false;
 
-        playPauseBtn.addEventListener('click', () => {
+        // Fix: Mobile browsers block autoplay — we only start after user clicks
+        playBtn.addEventListener('click', function() {
             if (isPlaying) {
-                audioPlayer.pause();
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                playPauseBtn.classList.remove('playing');
+                audio.pause();
             } else {
-                audioPlayer.play();
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                playPauseBtn.classList.add('playing');
+                audio.play().then(() => {
+                    status.textContent = "Playing live stream...";
+                }).catch(err => {
+                    status.textContent = "Error: " + err.message;
+                    console.error(err);
+                });
             }
             isPlaying = !isPlaying;
+            icon.classList.toggle('fa-play');
+            icon.classList.toggle('fa-pause');
+
+            // Ripple effect
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            ripple.style.width = ripple.style.height = playBtn.offsetWidth + 'px';
+            ripple.style.left = '0';
+            ripple.style.top = '0';
+            playBtn.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
         });
 
+        // Volume control
         volumeSlider.addEventListener('input', (e) => {
-            audioPlayer.volume = e.target.value;
+            audio.volume = e.target.value;
         });
 
-        audioPlayer.volume = 1;
-        audioPlayer.addEventListener('play', () => {
-            playPauseBtn.classList.add('playing');
-        });
+        // Update status on events
+        audio.addEventListener('loadstart', () => status.textContent = "Loading stream...");
+        audio.addEventListener('canplay', () => status.textContent = "Stream ready – Tap play");
+        audio.addEventListener('playing', () => status.textContent = "Now playing live");
+        audio.addEventListener('waiting', () => status.textContent = "Buffering...");
+        audio.addEventListener('error', () => status.textContent = "Stream error – Try again");
 
-        audioPlayer.addEventListener('pause', () => {
-            playPauseBtn.classList.remove('playing');
-        });
+        // Pre-load the stream metadata (doesn't start playing)
+        audio.load();
     </script>
 </body>
 </html>
